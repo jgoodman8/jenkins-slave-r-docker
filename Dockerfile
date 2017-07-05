@@ -15,11 +15,16 @@ RUN apt-get update \
   libssh2-1-dev \
   libcurl4-openssl-dev \
   libxml2-dev  \
+  software-properties-common \
   && rm -rf /var/lib/apt/lists/*
 
-# Install R (Extract from: https://github.com/rocker-org/rocker/blob/e9758030e435915d5e6f21aaab0fc35a5a8efaae/r-base/Dockerfile)
-ENV R_BASE_VERSION 3.1.1
+
+# Install R
+ENV R_BASE_VERSION 3.4
+RUN add-apt-repository 'deb http://cloud.r-project.org/bin/linux/debian jessie-cran34/'
+
 ########################################################
+## (Extract from: https://github.com/rocker-org/rocker/blob/e9758030e435915d5e6f21aaab0fc35a5a8efaae/r-base/Dockerfile)
 ## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 ## User should also have & own a home directory (for rstudio or linked volumes to work properly).
@@ -50,7 +55,7 @@ ENV LANG en_US.UTF-8
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 ## Also set a default CRAN repo, and make sure littler knows about it too
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -y --force-yes --no-install-recommends \
         littler \
         r-base=${R_BASE_VERSION}* \
         r-base-dev=${R_BASE_VERSION}* \
