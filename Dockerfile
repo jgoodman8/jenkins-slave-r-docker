@@ -1,6 +1,5 @@
-FROM jenkinsci/jnlp-slave
+FROM jenkinsci/jnlp-slave:3.19-1
 
-MAINTAINER dookie23 <dookie10@gmail.com>
 USER root
 
 # Install system dependencies
@@ -21,7 +20,7 @@ RUN apt-get update \
 
 # Install R
 ENV R_BASE_VERSION 3.4
-RUN add-apt-repository 'deb http://cloud.r-project.org/bin/linux/debian jessie-cran34/'
+RUN add-apt-repository 'deb http://cran.rstudio.com/bin/linux/debian stretch-cran34/'
 
 ########################################################
 ## (Extract from: https://github.com/rocker-org/rocker/blob/e9758030e435915d5e6f21aaab0fc35a5a8efaae/r-base/Dockerfile)
