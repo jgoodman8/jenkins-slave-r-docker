@@ -1,4 +1,4 @@
-FROM gradiant/jenkins-slave-r-docker
+FROM gradiant/jenkins-slave-r-docker:master
 
 MAINTAINER "Agustín Cañas" acanas@gradiant.org
 

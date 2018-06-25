@@ -1,6 +1,6 @@
 FROM gradiant/jenkins-slave-r-docker:master
 
-USER root
+MAINTAINER "Agustín Cañas" acanas@gradiant.org
 
 USER root
 
